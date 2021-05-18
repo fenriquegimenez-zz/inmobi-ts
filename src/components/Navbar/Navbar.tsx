@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-around">
       <div className="navbar-brand">
         <Link href="/">
           <a className="text-decoration-none text-dark">Inicio</a>
