@@ -5,3 +5,10 @@ export interface Client {
   phone: string
   address: string
 }
+
+export interface CobranzaClient {
+  client: string
+  monto: string
+  nro: string
+  cobrado: boolean
+}

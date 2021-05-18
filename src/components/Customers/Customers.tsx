@@ -50,7 +50,7 @@ const Customers = () => {
 
   return (
     <div className="container h-100">
-      <h1 className="text-center">Crear nuevo cliente</h1>
+      <h2 className="text-center my-4">Crear nuevo cliente</h2>
       <form onSubmit={handleSubmit} className="input-group my-3">
         <div className="input-group my-1">
           <input
