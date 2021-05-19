@@ -68,7 +68,7 @@ const Cobranzas = () => {
   }
 
   return (
-    <div className="table-responsive">
+    <div>
       <h2 className="text-center my-4">Cargar cobranzas</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
@@ -104,62 +104,64 @@ const Cobranzas = () => {
         </div>
       </form>
       {clients.length > 0 ? (
-        <table className="table table-hover caption-top table-bordered">
-          <caption>Total cobrado: {`Gs. ${thousands(total, ".")}`}</caption>
-          <thead>
-            <tr>
-              <th>Nro cobranza</th>
-              <th>Cliente</th>
-              <th>Monto cuota</th>
-              <th>Nro cuota</th>
-              <th>Cobrado?</th>
-              <th>Anular cobro</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clients.map((client: CobranzaClient, index: number) => {
-              const cobradoRowStyle = clsx({
-                "table-success": client.cobrado,
-              })
-              return (
-                <tr className={cobradoRowStyle}>
-                  <th scope="row">{index}</th>
-                  <td>{client.client}</td>
-                  <td>{`Gs. ${thousands(client.monto, ".")}`}</td>
-                  <td>{client.nro}</td>
-                  <td>
-                    <button
-                      className="btn btn-outline-success"
-                      onClick={() => setCobradoStatus(client.monto, index)}
-                      disabled={client.cobrado}
-                    >
-                      "✓"
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      disabled={!client.cobrado}
-                      onClick={() => anularCobro(index, client.monto)}
-                      className="btn btn-outline-success"
-                    >
-                      ✗
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => deleteCobranza(index, client.monto)}
-                      className="btn btn-outline-danger"
-                      disabled={client.cobrado}
-                    >
-                      🗑
-                    </button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-hover caption-top table-bordered">
+            <caption>Total cobrado: {`Gs. ${thousands(total, ".")}`}</caption>
+            <thead>
+              <tr>
+                <th>Nro cobranza</th>
+                <th>Cliente</th>
+                <th>Monto cuota</th>
+                <th>Nro cuota</th>
+                <th>Cobrado?</th>
+                <th>Anular cobro</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clients.map((client: CobranzaClient, index: number) => {
+                const cobradoRowStyle = clsx({
+                  "table-success": client.cobrado,
+                })
+                return (
+                  <tr className={cobradoRowStyle}>
+                    <th scope="row">{index}</th>
+                    <td>{client.client}</td>
+                    <td>{`Gs. ${thousands(client.monto, ".")}`}</td>
+                    <td>{client.nro}</td>
+                    <td>
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={() => setCobradoStatus(client.monto, index)}
+                        disabled={client.cobrado}
+                      >
+                        "✓"
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        disabled={!client.cobrado}
+                        onClick={() => anularCobro(index, client.monto)}
+                        className="btn btn-outline-success"
+                      >
+                        ✗
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => deleteCobranza(index, client.monto)}
+                        className="btn btn-outline-danger"
+                        disabled={client.cobrado}
+                      >
+                        🗑
+                      </button>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <p className="text-center text-secondary">Sin cobranzas</p>
       )}
