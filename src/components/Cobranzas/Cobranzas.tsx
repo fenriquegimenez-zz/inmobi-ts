@@ -68,7 +68,7 @@ const Cobranzas = () => {
   }
 
   return (
-    <div>
+    <div className="table-responsive">
       <h2 className="text-center my-4">Cargar cobranzas</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
