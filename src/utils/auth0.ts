@@ -1,4 +1,4 @@
 export const auth0 = {
-  domain: process.env.AUTH0_DOMAIN,
-  clientId: process.env.AUTH0_CLIENTID,
+  domain: "enriqueg-dev.us.auth0.com",
+  clientId: "auQ1WB86RIiWTT0YU5XTCu2P3GOcOA7v",
 }
