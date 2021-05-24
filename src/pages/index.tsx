@@ -1,6 +1,8 @@
 import React from "react"
 import Link from "next/dist/client/link"
 
+import Profile from "@/components/Profile/Profile"
+
 const home = () => {
   return (
     <>
@@ -21,14 +23,8 @@ const home = () => {
           )
         </span>
       </p>
-      <div className="d-grid gap-2 col-6 mx-auto">
-        <Link href="cobranzas">
-          <button className="btn btn-secondary">Ir a Cobranzas</button>
-        </Link>
-        <Link href="customers">
-          <button className="btn btn-secondary">Ir a Clientes</button>
-        </Link>
-      </div>
+
+      <Profile />
     </>
   )
 }

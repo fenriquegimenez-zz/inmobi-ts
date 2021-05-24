@@ -2,23 +2,36 @@
 import type { AppProps /*, AppContext */ } from "next/app"
 import Head from "next/head"
 import { useRouter } from "next/dist/client/router"
-import AppLayout from "@/components/AppLayout/AppLayout"
+
 import { titleCase } from "title-case"
+import { Auth0Provider } from "@auth0/auth0-react"
+import { useEffect, useState } from "react"
+
+import AppLayout from "@/components/AppLayout/AppLayout"
+import { auth0 } from "utils/auth0"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const path = router.pathname.split("/")[1]
+  const [location, setLocation] = useState("http://localhost:3000/")
+  useEffect(() => {
+    setLocation(window.location.origin)
+    console.log(location)
+  }, [])
+  const { domain, clientId } = auth0
   return (
     <>
-      <Head>
-        <title>
-          {path === "" ? "Inmobi - Inicio" : `Inmobi - ${titleCase(path)}`}
-        </title>
-      </Head>
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
+      <Auth0Provider domain={domain} clientId={clientId} redirectUri={location}>
+        <Head>
+          <title>
+            {path === "" ? "Inmobi - Inicio" : `Inmobi - ${titleCase(path)}`}
+          </title>
+        </Head>
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      </Auth0Provider>
     </>
   )
 }
