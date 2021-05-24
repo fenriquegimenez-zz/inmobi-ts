@@ -14,12 +14,12 @@ import "bootstrap/dist/css/bootstrap.min.css"
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const path = router.pathname.split("/")[1]
-  const [location, setLocation] = useState("http://localhost:3000/")
+  const { domain, clientId, url } = auth0
+  const [location, setLocation] = useState(url)
   useEffect(() => {
     setLocation(window.location.origin)
     console.log(location)
   }, [])
-  const { domain, clientId } = auth0
   return (
     <>
       <Auth0Provider domain={domain} clientId={clientId} redirectUri={location}>
