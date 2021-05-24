@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 import Button from "../Button/Button"
 
 const Navbar = () => {
-  const { isAuthenticated } = useAuth0()
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-evenly">
       <div className="navbar-brand me-auto">
@@ -30,7 +30,7 @@ const Navbar = () => {
           </li>
         </ul>
       ) : (
-        <Button outline={true} />
+        <Button outline={true} onClick={() => loginWithRedirect()} />
       )}
     </nav>
   )
