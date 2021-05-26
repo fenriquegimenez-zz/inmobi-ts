@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react"
 import { Client } from "types/types"
+import { db } from "services/firebase"
 
 const Customers = () => {
   const [name, setName] = useState<string>("")
@@ -34,6 +35,7 @@ const Customers = () => {
       { name, ruc, contact, phone, address },
     ]
     setClients(newClients)
+    db.collection("customers").doc().set({ name, ruc, contact, phone, address })
   }
 
   const deleteClient = (index: number): void => {

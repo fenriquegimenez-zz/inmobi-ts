@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import AppLayout from "@/components/AppLayout/AppLayout"
 import { auth0 } from "utils/auth0"
 import "bootstrap/dist/css/bootstrap.min.css"
+import "firebase/firestore"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

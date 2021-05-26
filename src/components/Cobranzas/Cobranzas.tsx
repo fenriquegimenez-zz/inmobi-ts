@@ -2,6 +2,7 @@ import React, { FormEvent, useState, useEffect, useRef } from "react"
 const thousands = require("thousands")
 import clsx from "clsx"
 import { CobranzaClient } from "types/types"
+import { db } from "services/firebase"
 
 const Cobranzas = () => {
   const [client, setClient] = useState<string>("")
@@ -26,13 +27,14 @@ const Cobranzas = () => {
     setNroCuota("")
   }
 
-  const addClient = (client: string, monto: string, nro: string): void => {
+  const addClient = async (client: string, monto: string, nro: string) => {
     if (!client || !monto || !nro) return
     const newClients: CobranzaClient[] = [
       ...clients,
       { client, monto, nro, cobrado },
     ]
     setClients(newClients)
+    await db.collection("cobranzas").doc().set({ client, monto, nro })
   }
 
   const addTotal = (monto: string): void => {
